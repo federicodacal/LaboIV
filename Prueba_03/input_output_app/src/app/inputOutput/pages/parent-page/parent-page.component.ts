@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AddComponent } from '../../components/add/add.component';
 
 @Component({
   selector: 'app-parent-page',
@@ -8,4 +7,28 @@ import { AddComponent } from '../../components/add/add.component';
 })
 export class ParentPageComponent {
 
+  listadoProductos:any[];
+
+  productoSeleccionado:any={};
+
+  constructor() { 
+
+    this.listadoProductos = [
+      {precio: 45, marca: "Fanta", stock: 20 },
+      {precio: 30, marca: "Pepsi", stock: 25 },
+      {precio: 35, marca: "Coca-Cola", stock: 40 }
+    ];
+  }
+
+  agregarProducto($event:Event){ 
+
+    console.info("Desde parent-component", $event)
+
+    this.listadoProductos.push($event);
+  }
+  
+  detallarProductoSeleccionado($event:Event) {
+
+    this.productoSeleccionado = $event;
+  }
 }

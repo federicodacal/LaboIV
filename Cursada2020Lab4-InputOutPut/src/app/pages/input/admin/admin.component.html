@@ -1,0 +1,123 @@
+<!-- media queries css -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<div id="fondo">
+    <div id="pagewrap">
+
+        <header id="header">
+
+
+            <h1 id="site-logo"><a href="#">Principal</a></h1>
+            <h2 id="site-description">{{title}}</h2>
+
+            <nav>
+
+                <ul id="main-nav" class="clearfix">
+                    <li><a class="btn" (click)="CambiarEntidad('alumno')">Alumnos<br> ABM</a></li>
+                    <li><a class="btn" (click)="CambiarEntidad('profesor')">Profesores<br>ABM</a> </li>
+                    <li><a class="btn" (click)="CambiarEntidad('materia')">Materias<br>ABM</a> </li>
+                    <li> <a class="btn btn-success">mas-></a> </li>
+
+                </ul>
+                <!-- /#main-nav -->
+            </nav>
+
+            <form id="searchform">
+                <input type="search" id="usuario" readonly placeholder="Sin Usuario">
+            </form>
+
+        </header>
+        <!-- /#header -->
+
+        <div id="content">
+
+            <article class="post clearfix">
+
+                <header>
+                    <h1 class="post-title"><a href="#">Listado  {{entidad}} </a></h1>
+                    <p class="post-meta"><time class="post-date" datetime="2018-12" pubdate>2018</time> <em>en</em> <a href="#">UTN FRA</a></p>
+                    <button type="button" (click)="CambiarLaVista()" [ngClass]="claseDeBoton" class="btn  btn-circle">{{comoVer}}<i class="fa fa-check"></i></button>
+                </header>
+                <hr>
+                <div id="principal" [ngSwitch]="entidad">
+                    <!--mostrar alumnos-->
+                    <div *ngSwitchCase="'alumno'">
+                        <app-tabla-alumno *ngIf="comoVer=='Tabla'" [listadoAlumnos]="listadoPrincipal" (alumnoSeleccionado)="tomarAlumnoParaDetalles($event)"></app-tabla-alumno>
+                        <app-listado-alumno *ngIf="comoVer=='Listado'" [listadoAlumnos]="listadoPrincipal" (alumnoSeleccionado)="tomarAlumnoParaDetalles($event)"></app-listado-alumno>
+                    </div>
+                    <!--mostrar materias-->
+
+                    <!--  error , no se puede  
+                       <app-tabla-materia *ngSwitchCase="'materia'" *ngIf="comoVer=='Tabla'"></app-tabla-materia>
+                        <app-listado-materia *ngIf="comoVer=='Tabla'" *ngSwitchCase="'materia'"></app-listado-materia>
+                    -->
+                    <div *ngSwitchCase="'materia'">
+                        <app-tabla-materia *ngIf="comoVer=='Tabla'"></app-tabla-materia>
+                        <app-listado-materia *ngIf="comoVer=='Listado'"></app-listado-materia>
+                    </div>
+
+                </div>
+
+            </article>
+            <!-- /.post -->
+
+        </div>
+        <!-- /#content -->
+
+
+        <aside id="sidebar">
+
+            <div id="botonesABM">
+                <!--contenido dinamico cargado por ajax-->
+            </div>
+            <!-- /.widget -->
+
+            <section class="widget clearfix" [ngSwitch]="entidad">
+                <h4 class="widgettitle">Alta {{entidad}} </h4>
+                <div id="informe">
+
+                    <app-form-alumno *ngSwitchCase="'alumno'" (alumnoCreado)="tomarAlumnoCreado($event)"> </app-form-alumno>
+                    <app-form-materia *ngSwitchCase="'materia'"></app-form-materia>
+
+
+                </div>
+
+            </section>
+            <section class="widget clearfix">
+                <h4 class="widgettitle">Detalle {{entidad}} </h4>
+                <div id="error" [ngSwitch]="entidad">
+
+                    <!--ng-template [ngIf]="cargado" [ngIfElse]="loading"-->
+                    <div *ngIf="estado=='cargado' else loading">
+                        <app-detalle-alumno *ngSwitchCase="'alumno'" [alumnoParaMostrar]="alumnoSeleccionado"></app-detalle-alumno>
+                        <app-detalle-materia *ngSwitchCase="'materia'"></app-detalle-materia>
+
+                    </div>
+                    <!--/ng-template-->
+
+                    <ng-template #loading>
+                        <div>cargando...
+                            <!--img src="assets/imagenes/ajax-loader.gif" style="height: 10px;width: 30px;">
+                            <img src="{{rutaDeGif}}" -->
+                            <img [src]="rutaDeGif" [ngStyle]="{'width.px': anchoGif}">
+                        </div>
+                    </ng-template>
+
+
+                </div>
+
+            </section>
+            <!-- /.widget -->
+
+        </aside>
+        <!-- /#sidebar -->
+
+        <footer id="footer">
+
+            <p>templete by <a href="http://www.octavio.com.ar">Octavio Villegas</a></p>
+
+        </footer>
+        <!-- /#footer -->
+
+    </div>
+    <!-- /#pagewrap -->
+</div>

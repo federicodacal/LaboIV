@@ -1,0 +1,6 @@
+<ul class="alumnos">
+    <li *ngFor="let alumno of listadoAlumnos ; let i = index">
+        #{{i}} <span class="badge">{{alumno.legajo}}</span>{{alumno.apellido}} -{{alumno.nombre}} <button type="button" class="btn btn-info btn-circle" (click)="mostrarDetalles(alumno)"><i class="fa fa-check"></i>
+    </button>
+    </li>
+</ul>

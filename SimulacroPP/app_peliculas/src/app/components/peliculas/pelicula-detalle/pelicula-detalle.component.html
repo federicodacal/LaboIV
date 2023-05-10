@@ -1,0 +1,11 @@
+<div *ngIf="peliculaRecibida" class="card" style="width: 16rem;">
+    <img class="card-img-top" src="{{peliculaRecibida.foto}}" alt="card_poster" [ngStyle]="{'widht':'15rem'}">
+    <div class="card-body">
+      <h5 class="card-title">{{peliculaRecibida.nombre}}</h5>
+      <p class="card-text">
+        Estreno: {{peliculaRecibida.fechaDeEstreno.toLocaleString()}} <br>
+        Tipo: {{peliculaRecibida.tipo}} <br>
+        Publico: {{peliculaRecibida.cantidadDePublico}} 
+      </p>
+    </div>
+</div>

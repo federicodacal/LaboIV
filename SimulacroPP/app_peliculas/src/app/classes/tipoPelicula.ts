@@ -1,6 +1,6 @@
 export enum TipoPelicula {
-    Terror,
-    Comedia,
-    Amor,
-    Otros
+    Terror = 'Terror',
+    Comedia = 'Comedia',
+    Amor = 'Amor',
+    Otros = 'Otros'
 }

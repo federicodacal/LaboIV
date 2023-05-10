@@ -51,7 +51,7 @@ export class AdminComponent implements OnInit {
     setTimeout(() => {
       this.alumnoSeleccionado = NuevoAlumno;
       this.estado = 'cargado';
-    }, 500);
+    }, 1000);
   }
 
   CambiarLaVista() {

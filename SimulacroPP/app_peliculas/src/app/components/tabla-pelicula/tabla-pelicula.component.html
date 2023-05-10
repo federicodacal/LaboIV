@@ -14,11 +14,11 @@
         <tr *ngFor="let pelicula of listadoPeliculas">
             <td>{{pelicula.id}}</td>
             <td>{{pelicula.nombre}}</td>
-            <td>{{pelicula.tipo}}</td>
-            <td>{{pelicula.fechaDeEstreno}}</td>
+            <td>{{pelicula.tipo.toLocaleString()}}</td>
+            <td>{{pelicula.fechaDeEstreno.toLocaleString()}}</td>
             <td>{{pelicula.cantidadDePublico}}</td>
-            <td>img.jpg</td>
-            <td><button type="button" class="btn btn-info  btn-circle" (click)="(pelicula)">Ver
+            <td><img src="{{pelicula.foto}}" alt="poster" [ngStyle]="{'width':'80px'}"></td>
+            <td><button type="button" class="btn btn-info  btn-circle" (click)="seleccionarPelicula(pelicula)">Ver
         </button></td>
         </tr>
 

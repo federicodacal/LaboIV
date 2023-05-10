@@ -3,7 +3,7 @@
     <!-- NAVBAR -->
       <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
+          <a class="navbar-brand" href="#">UTN</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -14,13 +14,13 @@
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#">Peliculas</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                <a class="nav-link" href="#">Actores</a>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">Opciones</a>
                 <ul class="dropdown-menu" aria-labelledby="dropdown03">
                   <li><a class="dropdown-item" href="#">Action</a></li>
                   <li><a class="dropdown-item" href="#">Another action</a></li>
@@ -29,7 +29,7 @@
               </li>
             </ul>
             <form>
-              <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+              <input class="form-control" type="text" placeholder="Búsqueda" aria-label="Search">
             </form>
           </div>
         </div>
@@ -39,10 +39,13 @@
     <div class="container py-4">
     
         <div class="p-5 mb-4 bg-light rounded-3">
+          <h1 class="display-5 fw-bold">{{tipoVista}} de peliculas</h1>
           <div class="container-fluid py-5">
-            <h1 class="display-5 fw-bold">Listado de elementos</h1>
-            <app-tabla-pelicula [listadoPeliculas]="listadoPeliculas"></app-tabla-pelicula>
-            <button class="btn btn-primary btn-lg" type="button">Cambiar vista</button>
+            <app-tabla-pelicula *ngIf="tipoVista=='Tabla'" [listadoPeliculas]="listadoPeliculas" (eventSeleccionarPelicula)="detallarPeliculaSeleccionada($event)"></app-tabla-pelicula>
+
+            <app-pelicula-listado *ngIf="tipoVista=='Listado'" [listadoPeliculas]="listadoPeliculas" (eventSeleccionarPelicula)="detallarPeliculaSeleccionada($event)"></app-pelicula-listado>
+
+            <button class="btn btn-primary btn-lg" type="button" (click)="cambiarVista()">Cambiar vista</button>
           </div>
         </div>
     
@@ -56,9 +59,10 @@
           </div>
           <div class="col-md-4">
             <div class="h-100 p-5 bg-light border rounded-3">
-              <h2>Solo mostrar</h2>
-              <p>Los controles necesarios, según la entidad y funcionalidad requerida.</p>
-              <button class="btn btn-secondary" type="button">Limpiar</button>
+              <h2>Detalle</h2>
+              <app-pelicula-detalle [peliculaRecibida]="peliculaSeleccionada"></app-pelicula-detalle>
+              <br>
+              <button class="btn btn-secondary" type="button" (click)="LimpiarDetalle()">Limpiar</button>
             </div>
           </div>
           <div class="col-md-4">

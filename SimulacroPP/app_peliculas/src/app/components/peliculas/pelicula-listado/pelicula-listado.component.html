@@ -1,1 +1,9 @@
-<p>pelicula-listado works!</p>
+<ul class="list-group list-group-flush">
+    <li *ngFor="let pelicula of listadoPeliculas" class="list-group-item">
+        {{pelicula.nombre}} - Tipo: {{pelicula.tipo}} - Estreno {{pelicula.fechaDeEstreno.toLocaleString()}}
+        <img src="{{pelicula.foto}}" alt="poster" [ngStyle]="{'width':'50px'}">
+        <button [ngStyle]="{'float':'right'}" type="button" class="btn btn-info  btn-circle" (click)="seleccionarPelicula(pelicula)">Ver
+        </button>
+    </li>
+</ul>
+<br>

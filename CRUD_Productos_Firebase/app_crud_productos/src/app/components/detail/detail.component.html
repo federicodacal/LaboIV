@@ -1,0 +1,9 @@
+<input type="text" class="form-control" value="{{productoRecibido.marca}}" [(ngModel)]="marca">
+<br>
+<input type="number" class="form-control" value="{{productoRecibido.precio}}" [(ngModel)]="precio">
+<br>
+<input type="number" class="form-control" value="{{productoRecibido.stock}}" [(ngModel)]="stock">
+<br>
+<button class="btn btn-outline-secondary" type="button" [ngStyle]="{'float':'left'}" (click)="modificarProducto()">Modificar</button>
+<button class="btn btn-danger" type="button" [ngStyle]="{'float':'right'}" (click)="borrarProducto()">Borrar</button>
+

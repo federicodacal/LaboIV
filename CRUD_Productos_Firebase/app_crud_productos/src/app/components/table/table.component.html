@@ -5,12 +5,13 @@
         <th>Stock</th>
         <th>Detalle</th>
     </thead>
-    <tbody>
+    <tbody *ngIf="listadoRecibido!.length > 0">
         <tr *ngFor="let item of listadoRecibido">
             <td>{{item.marca}}</td>
             <td>${{item.precio}}</td>
-            <td>{{item.stock}}</td>
+            <td [ngStyle]="{'color': item.stock == 0 ? 'red' : ''}">{{item.stock}}</td>
             <td><button class="btn btn-outline-primary" type="button" (click)="seleccionarProducto(item)">Ver</button></td>
         </tr>
     </tbody>
+    <p *ngIf="listadoRecibido!.length==0">No hay productos cargados</p>
 </table>

@@ -50,6 +50,4 @@ export class DetailComponent {
     console.info("Producto Modificar", prod);
     this.eventModificamosProducto.emit(prod);
   }
-
-
 }

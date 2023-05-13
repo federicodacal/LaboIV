@@ -1,0 +1,7 @@
+<router-outlet></router-outlet>
+<app-navbar [titulo] = "'App Noticias'"></app-navbar>
+<div class="container">
+  <app-form (parametrosSeleccionados)="buscarNoticias($event)"></app-form>
+  <app-spinner *ngIf="loading"></app-spinner>
+  <app-list [listadoRecibido]="listaNoticias"></app-list>
+</div>

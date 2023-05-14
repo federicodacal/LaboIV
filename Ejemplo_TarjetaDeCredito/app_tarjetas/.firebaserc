@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "laboiv-4066c": {
+      "hosting": {
+        "app_tarjetas": [
+          "laboiv-4066c"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "laboiv-4066c"
+  }
+}

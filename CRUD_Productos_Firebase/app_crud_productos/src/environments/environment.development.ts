@@ -6,4 +6,6 @@ export const environment = {
     apiKey: 'AIzaSyBVILj7KgK0cUDI4IcY6iiwlmu417oFQIM',
     authDomain: 'laboiv-4066c.firebaseapp.com',
     messagingSenderId: '756665788768',
-  },};
+  },
+  production : false
+};

@@ -28,13 +28,13 @@ export class ProductService {
 
   modificar(prod:Product) {
     const col = collection(this.firestore, 'Productos');
-    if(prod.id != '') {
-      const documento = doc(col, prod.id);
-      updateDoc(documento, {
-        marca: prod.marca,
-        precio: prod.precio,
-        stock: prod.stock
-      });
-    }
+
+    const documento = doc(col, prod.id);
+    updateDoc(documento, {
+      marca: prod.marca,
+      precio: prod.precio,
+      stock: prod.stock
+    });
+    
   }
 }

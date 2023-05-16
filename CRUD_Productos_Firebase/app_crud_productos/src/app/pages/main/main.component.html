@@ -32,7 +32,7 @@
         <div class="h-100 p-5 bg-light border rounded-3">
           <h2>Detalle</h2>
           <app-detail 
-            [productoRecibido]="productoSeleccionado" [listadoRecibido]="listadoProductos"
+            [productoRecibido]="productoSeleccionado"
             (eventBorramosProducto)="borrarProducto($event)"
             (eventModificamosProducto)="modificarProducto($event)">
           </app-detail>

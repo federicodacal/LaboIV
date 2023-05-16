@@ -55,14 +55,6 @@ export class MainComponent {
     let prod = new Product();
     prod = $event as any as Product;
 
-    this.listadoProductos.forEach(p => {
-      if(p.marca == prod.marca) {
-        if(p.id != null) {
-          prod.id = p.id;
-        }
-      }
-    });
-
     this.prodService.borrar(prod);
   }
 
@@ -70,13 +62,7 @@ export class MainComponent {
     let prod = new Product();
     prod = $event as any as Product;
 
-    this.listadoProductos.forEach(p => {
-      if(p.marca == prod.marca) {
-        if(p.id != null) {
-          prod.id = p.id;
-        }
-      }
-    });
+    console.info('Prod en modificar main', prod);
 
     this.prodService.modificar(prod);
   }

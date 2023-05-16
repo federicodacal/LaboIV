@@ -29,6 +29,10 @@ export class AddComponent {
       let prod = new Product(this.marca, this.precio, this.stock);
       console.info("Producto Alta", prod);
       this.eventCreamosProducto.emit(prod);
+
+      this.marca = '';
+      this.precio = undefined;
+      this.stock = undefined;
     }
   }
 

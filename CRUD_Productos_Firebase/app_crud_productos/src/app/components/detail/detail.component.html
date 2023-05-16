@@ -1,9 +1,14 @@
-<input type="text" class="form-control" [value]="productoRecibido.marca" [(ngModel)]="marca">
+<input type="text" class="form-control" [(ngModel)]="marca">
 <br>
-<input type="number" class="form-control" [value]="productoRecibido.precio" [(ngModel)]="precio">
+<input type="number" class="form-control" [(ngModel)]="precio">
 <br>
-<input type="number" class="form-control" [value]="productoRecibido.stock" [(ngModel)]="stock">
+<input type="number" class="form-control" [(ngModel)]="stock">
 <br>
 <button class="btn btn-outline-secondary" type="button" [ngStyle]="{'float':'left'}" (click)="modificarProducto()">Modificar</button>
 <button class="btn btn-danger" type="button" [ngStyle]="{'float':'right'}" (click)="borrarProducto()">Borrar</button>
 
+<!-- 
+    [value]="productoRecibido.marca"
+    [value]="productoRecibido.precio"
+    [value]="productoRecibido.stock"
+-->

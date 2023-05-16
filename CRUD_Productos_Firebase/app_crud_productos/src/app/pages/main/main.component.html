@@ -10,13 +10,19 @@
     <div class="p-5 mb-4 bg-light rounded-3">
       <div class="container-fluid py-5">
         <h1 class="display-5 fw-bold">Productos</h1>
-        <div *ngIf="vistaListado=='Lista'">
+
+        <div *ngIf="loading" class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+
+        <div *ngIf="vistaListado=='Lista' && !loading!">
             <app-list [listadoRecibido]="listadoProductos" (eventSeleccionarProducto)="detallarProductoSeleccionado($event)"></app-list>
         </div>
-        <div *ngIf="vistaListado=='Tabla'">
+        <div *ngIf="vistaListado=='Tabla' && !loading!">
             <app-table [listadoRecibido]="listadoProductos" (eventSeleccionarProducto)="detallarProductoSeleccionado($event)"></app-table>
         </div>
-        <button class="btn btn-primary" type="button" (click)="cambiarVista()">Cambiar vista</button>
+        <br>
+        <button class="btn btn-primary mt-3" type="button" (click)="cambiarVista()">Cambiar vista</button>
       </div>
     </div>
 

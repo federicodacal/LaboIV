@@ -1,33 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Product } from 'src/app/classes/product';
 import Swal from 'sweetalert2';
 import { ProductService } from 'src/app/services/product.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
-export class MainComponent {
+export class MainComponent implements OnInit, OnDestroy{
 
   listadoProductos:Array<Product>;
-
   productoSeleccionado:any={};
-
   vistaListado:string='Tabla';
+  loading:boolean = false;
+  suscripcion!:Subscription;
 
   constructor(private prodService:ProductService) { 
     this.listadoProductos = new Array();
   }
 
   ngOnInit() {
+    this.loading = true;
     this.traerProductos();
   }
 
+  ngOnDestroy(): void {
+    this.suscripcion.unsubscribe();
+  }
+
   traerProductos() {
-    this.prodService.traer().subscribe((res) => {
+    this.suscripcion = this.prodService.traer().subscribe((res) => {
       console.info('Productos', res);
       this.listadoProductos = res as Array<Product>;
+      this.loading = false;
     });
   }
 
@@ -41,7 +48,7 @@ export class MainComponent {
 
     Swal.fire({
       icon: 'success',
-      title: 'Producto Agregado',
+      title: 'Producto agregado',
       showConfirmButton: false,
       timer: 2000
     });
@@ -56,6 +63,13 @@ export class MainComponent {
     prod = $event as any as Product;
 
     this.prodService.borrar(prod);
+
+    Swal.fire({
+      icon: 'success',
+      title: 'Producto eliminado',
+      showConfirmButton: false,
+      timer: 2000
+    });
   }
 
   modificarProducto($event:Event) {
@@ -65,6 +79,13 @@ export class MainComponent {
     console.info('Prod en modificar main', prod);
 
     this.prodService.modificar(prod);
+    
+    Swal.fire({
+      icon: 'success',
+      title: 'Producto actualizado',
+      showConfirmButton: false,
+      timer: 2000
+    });
   }
 
   cambiarVista():void {

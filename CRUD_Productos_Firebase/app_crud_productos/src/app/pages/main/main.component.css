@@ -11,3 +11,8 @@ user-select: none;
     font-size: 3.5rem;
     }
 }
+
+.spinner-border {
+    height: 3rem;
+    width: 3rem;
+}
